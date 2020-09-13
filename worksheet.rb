@@ -46,6 +46,7 @@ max_rate = driver_rate.max_by {|id, rate| rate}
 puts "#{max_rate[0]} has the highest rating #{max_rate[1]}."
 
 # - For each driver, on which day did they make the most money?
+
 ride_share.each_pair do |id, rides|
   driver_earning_perday = {}
 
@@ -60,3 +61,4 @@ ride_share.each_pair do |id, rides|
   max_date = driver_earning_perday.max_by {|date, earning| earning}
   puts "#{id} made the most($#{max_date[1]}) on #{max_date[0]}."
 end
+
