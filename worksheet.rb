@@ -46,10 +46,17 @@ max_rate = driver_rate.max_by {|id, rate| rate}
 puts "#{max_rate[0]} has the highest rating #{max_rate[1]}."
 
 # - For each driver, on which day did they make the most money?
-driver_earning_date = {}
 ride_share.each_pair do |id, rides|
-  daily_earning = 0
-  rides.each {}
-  driver_earning_date[id] = {rides["DATE"] => rides.each {|ride| ride["COST"]}
+  driver_earning_perday = {}
+
+  rides.each do |ride|
+    if driver_earning_perday.has_key? ride[:date]
+      driver_earning_perday[ride[:date]] += ride[:cost]
+    else
+      driver_earning_perday[ride[:date]] = ride[:cost]
+    end
+  end
+
+  max_date = driver_earning_perday.max_by {|date, earning| earning}
+  puts "#{id} made the most($#{max_date[1]}) on #{max_date[0]}."
 end
-p driver_earning_date
